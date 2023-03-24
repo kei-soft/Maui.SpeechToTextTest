@@ -9,7 +9,22 @@ public partial class MainPage : ContentPage
 
     public Command ListenCommand { get; set; }
     public Command ListenCancelCommand { get; set; }
-    public string RecognitionText { get; set; }
+    public Command SpeakCommand { get; set; }
+
+    private string recognitionText;
+    public string RecognitionText
+    {
+        get
+        {
+            return recognitionText;
+        }
+
+        set
+        {
+            recognitionText = value;
+            OnPropertyChanged(nameof(RecognitionText));
+        }
+    }
 
     public MainPage(ISpeechToText speechToText)
     {
@@ -19,9 +34,14 @@ public partial class MainPage : ContentPage
 
         ListenCommand = new Command(Listen);
         ListenCancelCommand = new Command(ListenCancel);
+        SpeakCommand = new Command(Speak);
+
         BindingContext = this;
     }
 
+    /// <summary>
+    /// 듣고 결과 도출
+    /// </summary>
     private async void Listen()
     {
         var isAuthorized = await speechToText.RequestPermissions();
@@ -58,6 +78,18 @@ public partial class MainPage : ContentPage
     private void ListenCancel()
     {
         tokenSource?.Cancel();
+    }
+
+
+    CancellationTokenSource cts;
+
+    /// <summary>
+    /// 텍스트 말하기
+    /// </summary>
+    private async void Speak()
+    {
+        cts = new CancellationTokenSource();
+        await TextToSpeech.Default.SpeakAsync(this.speakText.Text, cancelToken: cts.Token);
     }
 }
 

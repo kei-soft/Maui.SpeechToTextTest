@@ -2,11 +2,13 @@
 <ContentPage
     x:Class="Maui.SpeechToTextTest.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
+            BackgroundColor="White"
             Spacing="25"
             VerticalOptions="Center">
 
@@ -24,6 +26,17 @@
                 Command="{Binding ListenCancelCommand}"
                 HorizontalOptions="Center"
                 Text="Listen Cancel" />
+
+            <Entry
+                x:Name="speakText"
+                Placeholder="Speak Word"
+                PlaceholderColor="Gray"
+                Text="Hello World" />
+
+            <Button
+                Command="{Binding SpeakCommand}"
+                HorizontalOptions="Center"
+                Text="Speak" />
 
         </VerticalStackLayout>
     </ScrollView>
