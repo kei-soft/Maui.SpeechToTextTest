@@ -61,7 +61,6 @@ public partial class MainPage : ContentPage
                             RecognitionText += partialText + " ";
                         }
 
-                        OnPropertyChanged(nameof(RecognitionText));
                     }), tokenSource.Token);
             }
             catch (Exception ex)

@@ -13,27 +13,53 @@
             VerticalOptions="Center">
 
             <Label
+                FontAttributes="Bold"
                 FontSize="18"
-                HorizontalOptions="Center"
-                Text="{Binding RecognitionText}" />
+                HorizontalOptions="Start"
+                Text="[ Speech to Text ]"
+                TextColor="Black" />
 
-            <Button
-                Command="{Binding ListenCommand}"
-                HorizontalOptions="Center"
-                Text="Listen" />
+            <HorizontalStackLayout Spacing="10">
+                <Button
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Command="{Binding ListenCommand}"
+                    HorizontalOptions="Center"
+                    Text="Listen" />
 
-            <Button
-                Command="{Binding ListenCancelCommand}"
-                HorizontalOptions="Center"
-                Text="Listen Cancel" />
+                <Button
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Command="{Binding ListenCancelCommand}"
+                    HorizontalOptions="Center"
+                    Text="Listen Cancel" />
+            </HorizontalStackLayout>
+
+            <Entry
+                FontSize="18"
+                Text="{Binding RecognitionText}"
+                TextColor="Blue" />
+
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="[ Text to Speech ]"
+                TextColor="Black" />
+
 
             <Entry
                 x:Name="speakText"
+                FontSize="18"
                 Placeholder="Speak Word"
                 PlaceholderColor="Gray"
-                Text="Hello World" />
+                Text="Hello World"
+                TextColor="Blue" />
 
             <Button
+                BorderColor="Black"
+                BorderWidth="1"
                 Command="{Binding SpeakCommand}"
                 HorizontalOptions="Center"
                 Text="Speak" />
